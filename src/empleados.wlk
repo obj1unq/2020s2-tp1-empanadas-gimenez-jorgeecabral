@@ -14,13 +14,27 @@ object gimenez {
 
 object galvan {
 	var sueldoFijo = 15000
-	var sueldoCobrado = 0
+	var dinero = 0
+	var deuda = 0
 	
+	method gastar(cuanto) {
+			deuda = (deuda + cuanto) - dinero
+			dinero = 0.max (dinero - cuanto)			
+	}
+	
+	method deuda() {
+		return deuda
+	}
+	method dinero () {
+		return dinero
+	}
 	method sueldo() {
 		return sueldoFijo
 	}
 	method recibirSueldo() {
-		sueldoCobrado = sueldoFijo
+		dinero = 0.max (sueldoFijo - deuda)
+		deuda = 0.max (deuda - sueldoFijo)
+		
 	}
 	method aumentarSueldo(aumento) {
 		sueldoFijo = aumento
